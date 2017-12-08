@@ -1,2 +1,4 @@
 # opnenewlinksample
-開新視窗不會跳出阻擋跳出式視窗
+
+
+Blog : http://no2don.blogspot.com/2017/12/javascript.html
