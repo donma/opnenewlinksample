@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <a id="btn1">測試封鎖</a>
+    <br />
+    <a id="btn2">測試不封鎖</a>
+    <script>
+
+        function newwin() {
+            window.open('https://msdn.microsoft.com/zh-tw/', '_blank');
+        }
+
+
+        $('#btn1').click(function () {
+            $.ajax({
+                url: '/data.js',
+                dataType: 'json',
+                success: function (data) {
+                    newwin();
+                }
+            });
+        });
+        
+        $('#btn2').click(function () {
+            //一定要放在呼叫ajax 之前
+            var w = window.open('');
+            $.ajax({
+                url: '/data.js',
+                dataType: 'json',
+                success: function (data) {
+                   
+                    $.ajax({
+                        url: '/newsite.js',
+                        dataType: 'text',
+                        success: function (data) {
+                            w.location = data;
+                        }
+                    });
+                }
+            });
+            
+        });
+
+
+    </script>
+</body>
+</html>
